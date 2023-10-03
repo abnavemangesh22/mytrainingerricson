@@ -134,17 +134,20 @@ users:
 Create ImagePolicyWebhook AdmissionConfiguration file(json/yaml), update custom kubeconfig file at
 
 /etc/kubernetes/pki/admission_config.json
-apiVersion: apiserver.config.k8s.io/v1
-kind: AdmissionConfiguration
-plugins:
-- name: ImagePolicyWebhook
-  configuration:
-    imagePolicy:
-      kubeConfigFile: /etc/kubernetes/pki/webhook/admission_kube_config.yaml
-      allowTTL: 50
-      denyTTL: 50
-      retryBackoff: 500
-      defaultAllow: false
+{
+
+"imagePolicy": {
+   "KubeConfigFile": "/etc/kubernetes/pki/webhook/admission_kube_config.yaml",
+    "allowTTL": 50,
+    "denyTTL": 50,
+    "retryBackoff": 500,
+    "defaultAllow": false
+
+
+}
+}
+
+
 Enable ImagePolicyWebhook in enable-admission-plugins in kubeapi server config at
 
 Update admin-config file in kube api server admission-control-config-file
